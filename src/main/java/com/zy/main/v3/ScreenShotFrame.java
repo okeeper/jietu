@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -329,9 +330,8 @@ class ActionPanel extends JPanel {
         actionBar.setFloatable(false);
         //截取版按钮
 
-
         JButton yesButton = new JButton();
-        ImageIcon icon = new ImageIcon("src/main/resources/images/yes.jpg");
+        ImageIcon icon = new ImageIcon(getImageURL("images/yes.jpg"));
         Image temp = icon.getImage().getScaledInstance(20,
                 20, icon.getImage().SCALE_DEFAULT);
         icon = new ImageIcon(temp);
@@ -348,7 +348,7 @@ class ActionPanel extends JPanel {
         yesButton.setSize(5,5);
         actionBar.add(yesButton);
         //保存按钮
-        JButton saveButton = new JButton(new ImageIcon("src/main/resources/images/save.gif"));
+        JButton saveButton = new JButton(new ImageIcon(getImageURL("images/save.gif")));
         saveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -360,7 +360,7 @@ class ActionPanel extends JPanel {
         actionBar.add(saveButton);
 
         //关闭按钮
-        JButton closeButton = new JButton(new ImageIcon("src/main/resources/images/close.gif"));
+        JButton closeButton = new JButton(new ImageIcon(getImageURL("images/close.gif")));
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -371,5 +371,16 @@ class ActionPanel extends JPanel {
         actionBar.add(closeButton);
 
         this.add(actionBar, BorderLayout.NORTH);
+    }
+
+    /**
+     * 获取图片的URL
+     * @param iconName
+     * @return
+     */
+    private URL getImageURL(String iconName){
+        //通过名称直接传入ImageIcon 无法显示  使用classLoader获取URL将从编译的classpath里面查找资源文件 加上"/"表示从根目录查找。
+        URL url = getClass().getResource("/"+iconName);
+        return url;
     }
 }

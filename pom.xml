@@ -51,7 +51,8 @@
                 </executions>
             </plugin>
 
-            <plugin>
+            <!-- 编译配置-->
+          <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
@@ -59,9 +60,10 @@
                     <source>1.7</source>
                     <target>1.7</target>
                     <encoding>UTF-8</encoding>
-                    <compilerArguments>
+                    <!--<compilerArguments>
                         <extdirs>lib</extdirs>
-                    </compilerArguments>
+                        &lt;!&ndash;<extdirs>images</extdirs>&ndash;&gt;
+                    </compilerArguments>-->
                 </configuration>
             </plugin>
 
@@ -105,7 +107,7 @@
                 </executions>
             </plugin>
 
-            <!--生成有jar包依赖的可执行jar-->
+            <!--生成有jar包依赖的可执行jar 并将全部依赖jar打入到可执行jar中-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
