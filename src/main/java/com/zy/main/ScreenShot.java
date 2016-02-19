@@ -2,8 +2,10 @@ package com.zy.main;
 
 import com.melloware.jintellitype.HotkeyListener;
 import com.melloware.jintellitype.JIntellitype;
+import com.melloware.jintellitype.JIntellitypeException;
 import com.zy.main.v3.ScreenShotFrame;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class ScreenShot implements HotkeyListener {
@@ -52,27 +54,36 @@ public class ScreenShot implements HotkeyListener {
         JIntellitype.getInstance().registerHotKey(KEY_2, JIntellitype.MOD_CONTROL + JIntellitype.MOD_ALT,
                 (int) 'O');
         JIntellitype.getInstance().addHotKeyListener(this);
+
     }
 
     private static ScreenShotFrame frame = null;
 
     public static void main(String[] args) {
         ScreenShot key = new ScreenShot();
-        key.initHotkey();
+        try{
 
-        EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
+            key.initHotkey();
 
-                try {
-                    frame = new ScreenShotFrame();
-                    frame.startShot();
-                } catch (AWTException e) {
-                    System.out.println("初始化程序失败！！！！");
-                    e.printStackTrace();
+            EventQueue.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        frame = new ScreenShotFrame();
+                        frame.startShot();
+                    } catch (Exception e) {
+                        System.out.println("初始化程序失败！！！！");
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "初始化程序失败："+e.getMessage(), "截屏程序提示", JOptionPane.ERROR_MESSAGE);
+                    }
+
                 }
+            });
+        }catch (JIntellitypeException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Ctrl + Alt + I 或 Ctrl + Alt + O 系统热键被占用", "截屏程序提示", JOptionPane.ERROR_MESSAGE);
+        }
 
-            }
-        });
     }
 }

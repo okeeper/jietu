@@ -24,30 +24,7 @@ import java.util.Date;
  * 2.重新组织了程序，使结构和可读性更好。（起码我认为是这样）
  * 3.使用一个去掉装饰的JFrame替代JWindow来实现主窗体。（主要原因在于，JWindow无法实现键盘事件监听。暂不明原因）
  */
-/*public class ScreenShotTest_v3 {
 
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {	
-			@Override
-			public void run() {
-		
-				try {
-					ScreenShotFrame frame=new ScreenShotFrame();
-					frame.setVisible(true);
-				} catch (AWTException e) {
-					System.out.println("初始化程序失败！！！！");
-					e.printStackTrace();
-				}
-				
-			}
-		});
-	}
-
-}*/
-/*
- * 主窗口
- */
 public class ScreenShotFrame extends JFrame {
     private ShotImagePanel imagePanel = null; //截图面板
     private ActionPanel actionPanel = null;   //操作面板
@@ -144,7 +121,7 @@ public class ScreenShotFrame extends JFrame {
     public void startShot() {
         imagePanel.shot();
         this.setVisible(true);
-        this.setExtendedState(Frame.MAXIMIZED_BOTH);
+        this.setExtendedState(Frame.MAXIMIZED_BOTH);//截图画板顶置
         this.requestFocus();
     }
 }
