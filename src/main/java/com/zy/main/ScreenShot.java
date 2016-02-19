@@ -27,6 +27,8 @@ public class ScreenShot implements HotkeyListener {
                 System.out.println("ctrl+alt+O 按下.........");
                 System.out.println("截屏程序退出,bye~");
                 destroy();
+                frame.stopShot();
+                JOptionPane.showMessageDialog(null, "截屏程序退出", "截屏程序提示", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
                 break;
 
@@ -41,7 +43,6 @@ public class ScreenShot implements HotkeyListener {
     void destroy() {
         JIntellitype.getInstance().unregisterHotKey(KEY_1);
         JIntellitype.getInstance().unregisterHotKey(KEY_2);
-        System.exit(0);
     }
 
     /**
