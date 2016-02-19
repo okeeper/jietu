@@ -6,7 +6,7 @@ import com.zy.main.v3.ScreenShotFrame;
 
 import java.awt.*;
 
-public class HotKey implements HotkeyListener {
+public class ScreenShot implements HotkeyListener {
     static final int KEY_1 = 88;
     static final int KEY_2 = 89;
 
@@ -57,7 +57,7 @@ public class HotKey implements HotkeyListener {
     private static ScreenShotFrame frame = null;
 
     public static void main(String[] args) {
-        HotKey key = new HotKey();
+        ScreenShot key = new ScreenShot();
         key.initHotkey();
 
         EventQueue.invokeLater(new Runnable() {
